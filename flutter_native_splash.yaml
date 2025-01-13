@@ -3,8 +3,8 @@ flutter_native_splash:
   background_image_dark: assets/images/splashDark.png
 
   android_12:
-  color: "#171717"
-  color_dark: "#FFFFFF"
+  color: "#FFFFFF"
+  color_dark: "#171717"
 
   image: assets/images/newsLogoLight.png
   image_dark: assets/images/newsLogoDark.png
