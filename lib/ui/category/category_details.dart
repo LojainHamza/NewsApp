@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/api/api_manager.dart';
 import 'package:news_app/model/source_response.dart';
+import 'package:news_app/ui/category/source_tab_widget.dart';
 import 'package:news_app/utils/app_colors.dart';
 
 class CategoryDetails extends StatefulWidget {
@@ -48,13 +49,8 @@ class _CategoryDetailsState extends State<CategoryDetails> {
             );
           }
           // todo: Server => success
-          var sourceList = snapshot.data!.sources!;
-          return ListView.builder(
-              itemBuilder: (context,index){
-                return Text(sourceList[index].name ?? '');
-              },
-            itemCount: sourceList.length,
-          );
+          var sourcesList = snapshot.data!.sources!;
+          return SourceTabWidget(sourcesList: sourcesList);
         }
     );
   }
