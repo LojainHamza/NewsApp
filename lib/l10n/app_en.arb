@@ -1,0 +1,22 @@
+{
+  "welcome": "Welcome",
+  "here_is_some_news_for_you": "Here is Some News For You",
+  "view_all": "View All",
+  "general": "General",
+  "business": "Business",
+  "sports": "Sports",
+  "health": "Health",
+  "science": "Science",
+  "entertainment": "Entertainment",
+  "technology": "Technology",
+  "view_full_article": "View Full Article",
+  "search": "Search",
+  "news_app": "News App",
+  "go_to_home": "Go To Home",
+  "theme": "Theme",
+  "dark": "Dark",
+  "light": "Light",
+  "language": "Language",
+  "english": "English",
+  "arabic": "Arabic"
+}

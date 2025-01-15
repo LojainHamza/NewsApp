@@ -1,0 +1,22 @@
+{
+  "welcome": "مرحبًا",
+  "here_is_some_news_for_you": "إليك بعض الأخبار",
+  "view_all": "عرض الكل",
+  "general": "العامة",
+  "business": "الأعمال التجارية",
+  "sports": "الرياضة",
+  "health": "الصحة",
+  "science": "العلوم",
+  "entertainment": "الترفيه",
+  "technology": "التكنولوجيا",
+  "view_full_article": "عرض المقال كاملاً",
+  "search": "البحث",
+  "news_app": "تطبيق الأخبار",
+  "go_to_home": "الذهاب إلى الصفحة الرئيسية",
+  "theme": "النمط",
+  "dark": "ليلي",
+  "light": "نهاري",
+  "language": "اللغة",
+  "english": "الانجليزية",
+  "arabic": "العربية"
+}

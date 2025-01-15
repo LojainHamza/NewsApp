@@ -3,6 +3,7 @@ import 'package:news_app/ui/home/drawer/drawer_title_item.dart';
 import 'package:news_app/utils/app_colors.dart';
 import 'package:news_app/utils/app_styles.dart';
 import 'package:news_app/utils/assets_manager.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeDrawer extends StatelessWidget {
   const HomeDrawer({super.key});
@@ -17,18 +18,18 @@ class HomeDrawer extends StatelessWidget {
           height: height*0.2,
           width: double.infinity,
           color: AppColors.whiteColor,
-          child: Center(child: Text('News App',style: AppStyles.bold24Black))
+          child: Center(child: Text(AppLocalizations.of(context)!.news_app,style: AppStyles.bold24Black))
         ),
         SizedBox(height: height*0.02),
         InkWell(
           onTap: (){
             // todo: go to home
           },
-            child: DrawerTitleItem(imagePath: AssetsManager.homeIcon,title: 'Go To Home')),
+            child: DrawerTitleItem(imagePath: AssetsManager.homeIcon,title: AppLocalizations.of(context)!.go_to_home)),
         SizedBox(height: height*0.02),
         Divider(color: AppColors.whiteColor,thickness: 2,indent: width*0.04,endIndent: width*0.06),
         SizedBox(height: height*0.02),
-        DrawerTitleItem(imagePath: AssetsManager.themeIcon,title: 'Theme'),
+        DrawerTitleItem(imagePath: AssetsManager.themeIcon,title: AppLocalizations.of(context)!.theme),
         SizedBox(height: height*0.01),
         Container(
           margin: EdgeInsets.symmetric(
@@ -48,7 +49,7 @@ class HomeDrawer extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Dark',style: AppStyles.medium20White),
+              Text(AppLocalizations.of(context)!.dark,style: AppStyles.medium20White),
               const Icon(Icons.arrow_drop_down,color: AppColors.whiteColor,size: 30)
             ],
           ),
@@ -56,7 +57,7 @@ class HomeDrawer extends StatelessWidget {
         SizedBox(height: height*0.03),
         Divider(color: AppColors.whiteColor,thickness: 2,indent: width*0.04,endIndent: width*0.06),
         SizedBox(height: height*0.02),
-        DrawerTitleItem(imagePath: AssetsManager.languageIcon,title: 'Language'),
+        DrawerTitleItem(imagePath: AssetsManager.languageIcon,title: AppLocalizations.of(context)!.language),
         SizedBox(height: height*0.01),
         Container(
           margin: EdgeInsets.symmetric(
@@ -76,7 +77,7 @@ class HomeDrawer extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('English',style: AppStyles.medium20White),
+              Text(AppLocalizations.of(context)!.english,style: AppStyles.medium20White),
               const Icon(Icons.arrow_drop_down,color: AppColors.whiteColor,size: 30)
             ],
           ),
