@@ -41,6 +41,7 @@ dependencies:
   flutter_native_splash: ^2.4.4
   google_fonts: ^6.2.1
   http: ^1.2.2
+  provider: ^6.1.2
 
 dev_dependencies:
   flutter_test:
