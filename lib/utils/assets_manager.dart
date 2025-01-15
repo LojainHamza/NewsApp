@@ -13,4 +13,7 @@ class AssetsManager{
   static const String sportsDark = 'assets/images/sportsDark.png';
   static const String technologyLight = 'assets/images/technologyLight.png';
   static const String technologyDark = 'assets/images/technologyDark.png';
+  static const String homeIcon = 'assets/images/homeIcon.png';
+  static const String languageIcon = 'assets/images/languageIcon.png';
+  static const String themeIcon = 'assets/images/themeIcon.png';
 }

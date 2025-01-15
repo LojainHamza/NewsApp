@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/model/source_response.dart';
-import 'package:news_app/ui/category/source_name_item.dart';
+import 'package:news_app/ui/home/category/source_name_item.dart';
 import 'package:news_app/utils/app_colors.dart';
 
 class SourceTabWidget extends StatefulWidget {
