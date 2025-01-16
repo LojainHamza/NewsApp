@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/utils/app_colors.dart';
-
 import 'home/category/category_details.dart';
 import 'home/drawer/home_drawer.dart';
 

@@ -2,19 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:news_app/providers/app_language_provider.dart';
 import 'package:news_app/providers/app_theme_provider.dart';
 import 'package:news_app/ui/home/category/category_details.dart';
+import 'package:news_app/ui/home/news/my_custom_messages_ar.dart';
+import 'package:news_app/ui/home/news/my_custom_messages_en.dart';
 import 'package:news_app/ui/home_screen.dart';
 import 'package:news_app/utils/app_theme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
-void main(){
+void main() {
+  timeago.setLocaleMessages('en', MyCustomMessagesEN());
+  timeago.setLocaleMessages('ar', MyCustomMessagesAR());
+
   runApp(
-      MultiProvider(
+    MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => AppThemeProvider()),
         ChangeNotifierProvider(create: (context) => AppLanguageProvider()),
       ],
-      child: MyApp()));
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -40,4 +48,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/api/api_manager.dart';
+import 'package:news_app/model/news_response.dart';
 import 'package:news_app/model/source_response.dart';
-import 'package:news_app/ui/home/category/source_tab_widget.dart';
+import 'package:news_app/ui/home/news/news_item.dart';
 import 'package:news_app/utils/app_colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class CategoryDetails extends StatefulWidget {
-  static const String routeName = 'categoryDetails';
+
+class NewsWidget extends StatefulWidget {
+  Source source;
+  NewsWidget({required this.source});
 
   @override
-  State<CategoryDetails> createState() => _CategoryDetailsState();
+  State<NewsWidget> createState() => _NewsWidgetState();
 }
 
-class _CategoryDetailsState extends State<CategoryDetails> {
+class _NewsWidgetState extends State<NewsWidget> {
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<SourceResponse?>(
-        future: APIManager.getSources(),
+    return FutureBuilder<NewsResponse?>(
+        future: APIManager.getNewsBySourceId(widget.source.id??''),
         builder: (context,snapshot){
-          // todo: loading
           if(snapshot.connectionState == ConnectionState.waiting){
             return const Center(child: CircularProgressIndicator(color: AppColors.greyColor));
           }else if(snapshot.hasError){
@@ -28,7 +30,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                   Text(AppLocalizations.of(context)!.sth_went_wrong,style: Theme.of(context).textTheme.headlineLarge),
                   ElevatedButton(
                     onPressed: (){
-                    APIManager.getSources();
+                    APIManager.getNewsBySourceId(widget.source.id??'');
                     setState(() {
 
                     });
@@ -36,17 +38,14 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                 ],
               ),
             );
-          }
-          // todo: Server => response (success , error)
-          // todo: Server => error
-          if(snapshot.data!.status != 'ok'){
+          }else if(snapshot.data!.status != 'ok'){
             return Center(
               child: Column(
                 children: [
-                  Text(snapshot.data!.message!),
+                  Text(snapshot.data!.message!, style: Theme.of(context).textTheme.headlineLarge),
                   ElevatedButton(
                     onPressed: (){
-                    APIManager.getSources();
+                    APIManager.getNewsBySourceId(widget.source.id ?? '');
                     setState(() {
 
                     });
@@ -55,10 +54,12 @@ class _CategoryDetailsState extends State<CategoryDetails> {
               ),
             );
           }
-          // todo: Server => success
-          var sourcesList = snapshot.data!.sources!;
-          return SourceTabWidget(sourcesList: sourcesList);
-        }
-    );
+          var newsList = snapshot.data!.articles!;
+          return ListView.builder(
+              itemBuilder: (context,index){
+                return NewsItem(news: newsList[index]);
+              },
+          itemCount: newsList.length);
+        });
   }
 }

@@ -18,5 +18,8 @@
   "light": "Light",
   "language": "Language",
   "english": "English",
-  "arabic": "Arabic"
+  "arabic": "Arabic",
+  "sth_went_wrong": "Something Went Wrong",
+  "try_again": "Try Again",
+  "by": "By"
 }
