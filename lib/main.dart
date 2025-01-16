@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/providers/app_language_provider.dart';
 import 'package:news_app/providers/app_theme_provider.dart';
-import 'package:news_app/ui/home/category/category_details.dart';
 import 'package:news_app/ui/home/news/my_custom_messages_ar.dart';
 import 'package:news_app/ui/home/news/my_custom_messages_en.dart';
 import 'package:news_app/ui/home_screen.dart';
@@ -10,7 +9,16 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  /// Create instances of providers
+  final appLanguageProvider = AppLanguageProvider();
+  final appThemeProvider = AppThemeProvider();
+
+  /// Load settings from Shared Preferences
+  await appLanguageProvider.loadLanguage();
+  await appThemeProvider.loadTheme();
+
   timeago.setLocaleMessages('en', MyCustomMessagesEN());
   timeago.setLocaleMessages('ar', MyCustomMessagesAR());
 
@@ -43,7 +51,6 @@ class MyApp extends StatelessWidget {
       initialRoute: HomeScreen.routeName,
       routes: {
         HomeScreen.routeName: (context) => HomeScreen(),
-        CategoryDetails.routeName: (context) => CategoryDetails(),
       },
     );
   }
