@@ -11,7 +11,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 class HomeDrawer extends StatefulWidget {
-  const HomeDrawer({super.key});
+  Function onDrawerItemClicked;
+  HomeDrawer({required this.onDrawerItemClicked});
 
   @override
   State<HomeDrawer> createState() => _HomeDrawerState();
@@ -36,6 +37,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
         InkWell(
           onTap: (){
             // todo: go to home
+            widget.onDrawerItemClicked();
           },
             child: DrawerTitleItem(imagePath: AssetsManager.homeIcon,title: AppLocalizations.of(context)!.go_to_home)),
         SizedBox(height: height*0.02),

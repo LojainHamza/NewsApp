@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:news_app/model/category_model.dart';
 import 'package:news_app/utils/app_colors.dart';
-import 'package:news_app/utils/assets_manager.dart';
 import 'package:news_app/providers/app_theme_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
 class CategoryFragment extends StatelessWidget {
   List<CategoryModel> categoriesList = [];
+  Function onViewAllClicked;
+  CategoryFragment({required this.onViewAllClicked});
 
   @override
   Widget build(BuildContext context) {
@@ -62,8 +63,9 @@ class CategoryFragment extends StatelessWidget {
                           totalSwitches: 2,
                           animate: true,
                           radiusStyle: true,
-                          onToggle: (index) {
+                          onToggle: (index1) {
                             print('switched to: $index');
+                            onViewAllClicked(categoriesList[index]);
                           },
                         )
                         :ToggleSwitch(
@@ -88,8 +90,9 @@ class CategoryFragment extends StatelessWidget {
                           totalSwitches: 2,
                           animate: true,
                           radiusStyle: true,
-                          onToggle: (index) {
+                          onToggle: (index1) {
                             print('switched to: $index');
+                            onViewAllClicked(categoriesList[index]);
                           },
                         ),
                       ),
