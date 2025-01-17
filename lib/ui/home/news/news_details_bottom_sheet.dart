@@ -6,6 +6,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:news_app/providers/app_theme_provider.dart';
 import 'package:news_app/utils/app_styles.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 
 class NewsDetailsBottomSheet extends StatefulWidget {
   News news;
@@ -50,10 +52,19 @@ class _NewsDetailsBottomSheetState extends State<NewsDetailsBottomSheet> {
               ),
               backgroundColor: themeProvider.appTheme==ThemeMode.light?AppColors.whiteColor:AppColors.blackColor
             ),
-              onPressed: (){
-              // todo: pass the news url to be web viewed
+              onPressed: () async {
+                Uri url = Uri.parse(widget.news.url ?? '');
+
+                if (await canLaunchUrl(url)) {
+                  await launchUrl(url);
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text(AppLocalizations.of(context)!.sth_went_wrong)),
+                  );
+                }
               },
-              child: Text(AppLocalizations.of(context)!.view_full_article,style: themeProvider.appTheme==ThemeMode.light?AppStyles.bold16Black:AppStyles.bold16White))
+              child: Text(AppLocalizations.of(context)!.view_full_article,style: themeProvider.appTheme==ThemeMode.light?AppStyles.bold16Black:AppStyles.bold16White)
+          )
         ],
       ),
     );
