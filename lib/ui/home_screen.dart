@@ -6,6 +6,7 @@ import 'package:news_app/ui/home/search/search_widget.dart';
 import 'package:news_app/utils/app_colors.dart';
 import 'home/drawer/home_drawer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:news_app/model/source_response.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = 'homeScreen';
@@ -16,56 +17,49 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  CategoryModel? selectedCategory;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          selectedCategory == null?
-            AppLocalizations.of(context)!.home
-            : selectedCategory!.title,
-            style: Theme.of(context).textTheme.headlineLarge),
-        actions:[
+          selectedCategory == null
+              ? AppLocalizations.of(context)!.home
+              : selectedCategory!.title,
+          style: Theme.of(context).textTheme.headlineLarge,
+        ),
+        actions: [
           IconButton(
-              onPressed: (){
-                //todo: navigate to search widget
-                widget.isSearching = true;
-                setState(() {
-
-                });
-              },
-              icon: const Icon(Icons.search)
-          )
-        ]
+            onPressed: () {
+              widget.isSearching = true;
+              setState(() {});
+            },
+            icon: const Icon(Icons.search),
+          ),
+        ],
       ),
       drawer: Drawer(
         backgroundColor: AppColors.blackColor,
         child: HomeDrawer(onDrawerItemClicked: onDrawerItemClicked),
       ),
       body: widget.isSearching
-          ? SearchWidget()
+          ? SearchWidget(source: null) // تمرير null للإشارة إلى جميع الأخبار
           : (selectedCategory == null
           ? CategoryFragment(onViewAllClicked: onViewAllClicked)
-          : CategoryDetails(category: selectedCategory!)
-      ),
+          : CategoryDetails(category: selectedCategory!)),
     );
   }
 
-  CategoryModel? selectedCategory;
-  void onViewAllClicked(CategoryModel newSelectedCategory){
-    //todo: newSelectedCategory => user's choice
+  void onViewAllClicked(CategoryModel newSelectedCategory) {
     selectedCategory = newSelectedCategory;
-    setState(() {
-
-    });
+    setState(() {});
   }
 
   void onDrawerItemClicked() {
     selectedCategory = null;
     widget.isSearching = false;
     Navigator.pop(context);
-    setState(() {
-
-    });
+    setState(() {});
   }
 }

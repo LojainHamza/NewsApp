@@ -45,6 +45,51 @@ class APIManager{
       throw e;
     }
   }
+
+  static Future<NewsResponse?> getAllNews({String? query})async{
+    String searchQuery = query ?? 'news';
+    Uri url = Uri.https(
+        APIConstants.baseUrl,
+        EndPoints.newsApi,
+        {
+          'apiKey': APIConstants.apiKey,
+          'q': Uri.encodeComponent(searchQuery),
+        });
+    try{
+      var response = await http.get(url);
+      var responseBody = response.body;
+      var json = jsonDecode(responseBody);
+      return NewsResponse.fromJson(json);
+      // return NewsResponse.fromJson(jsonDecode(response.body));
+    }catch(e){
+      throw e;
+    }
+  }
+
+  static Future<NewsResponse?> getNewsByQuery(String? query) async {
+    if (query == null || query.isEmpty) {
+      return await getAllNews(query: 'news');
+    }
+
+    Uri url = Uri.https(
+        APIConstants.baseUrl,
+        EndPoints.newsApi,
+        {
+          'apiKey': APIConstants.apiKey,
+          'q': Uri.encodeComponent(query)
+        }
+    );
+
+    try {
+      var response = await http.get(url);
+      var responseBody = response.body;
+      var json = jsonDecode(responseBody);
+      return NewsResponse.fromJson(json);
+    } catch (e) {
+      throw e;
+    }
+  }
+
 }
 
 /*

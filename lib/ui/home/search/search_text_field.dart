@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SearchTextField extends StatefulWidget {
-  const SearchTextField({super.key});
+  final Function(String) onSearch;
+
+  const SearchTextField({super.key, required this.onSearch});
 
   @override
   SearchTextFieldState createState() => SearchTextFieldState();
@@ -13,6 +15,7 @@ class SearchTextFieldState extends State<SearchTextField> {
 
   void clearText() {
     searchTextController.clear();
+    widget.onSearch('');
     setState(() {
 
     });
@@ -20,24 +23,31 @@ class SearchTextFieldState extends State<SearchTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: searchTextController,
-      style: TextStyle(color: Theme.of(context).indicatorColor),
-      decoration: InputDecoration(
-        hintText: AppLocalizations.of(context)!.search,
-        hintStyle: TextStyle(color: Theme.of(context).indicatorColor),
-        prefixIcon: Icon(Icons.search,color: Theme.of(context).indicatorColor),
-        suffixIcon: IconButton(
-          icon: Icon(Icons.clear,color: Theme.of(context).indicatorColor),
-          onPressed: clearText,
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
-          borderSide: BorderSide(color: Theme.of(context).indicatorColor),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
-          borderSide: BorderSide(color: Theme.of(context).indicatorColor),
+    var width = MediaQuery.of(context).size.width;
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: width * 0.04),
+      child: TextFormField(
+        controller: searchTextController,
+        style: TextStyle(color: Theme.of(context).indicatorColor),
+        onChanged: (value) {
+          widget.onSearch(value);
+        },
+        decoration: InputDecoration(
+          hintText: AppLocalizations.of(context)!.search,
+          hintStyle: TextStyle(color: Theme.of(context).indicatorColor),
+          prefixIcon: Icon(Icons.search, color: Theme.of(context).indicatorColor),
+          suffixIcon: IconButton(
+            icon: Icon(Icons.clear, color: Theme.of(context).indicatorColor),
+            onPressed: clearText,
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(16),
+            borderSide: BorderSide(color: Theme.of(context).indicatorColor),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(16),
+            borderSide: BorderSide(color: Theme.of(context).indicatorColor),
+          ),
         ),
       ),
     );
