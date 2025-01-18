@@ -27,6 +27,7 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
                 onTap: (){
                   languageProvider.changeLanguage('en');
                   Navigator.pop(context);
+                  Navigator.pop(context);
                 },
                 child: languageProvider.appLanguage == 'en'?
                 getSelectedItemWidget(AppLocalizations.of(context)!.english)
@@ -36,6 +37,7 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
             InkWell(
                 onTap: (){
                   languageProvider.changeLanguage('ar');
+                  Navigator.pop(context);
                   Navigator.pop(context);
                 },
                 child: languageProvider.appLanguage == 'ar'?

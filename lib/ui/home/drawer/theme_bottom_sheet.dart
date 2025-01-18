@@ -26,6 +26,7 @@ class _ThemeBottomSheetState extends State<ThemeBottomSheet> {
             onTap: (){
               themeProvider.changeTheme(ThemeMode.light);
               Navigator.pop(context);
+              Navigator.pop(context);
             },
             child: themeProvider.appTheme == ThemeMode.light?
                  getSelectedItemWidget(AppLocalizations.of(context)!.light)
@@ -35,6 +36,7 @@ class _ThemeBottomSheetState extends State<ThemeBottomSheet> {
           InkWell(
             onTap: (){
               themeProvider.changeTheme(ThemeMode.dark);
+              Navigator.pop(context);
               Navigator.pop(context);
             },
               child: themeProvider.appTheme == ThemeMode.dark?
