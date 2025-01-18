@@ -64,7 +64,6 @@ class CategoryFragment extends StatelessWidget {
                           animate: true,
                           radiusStyle: true,
                           onToggle: (index1) {
-                            print('switched to: $index');
                             onViewAllClicked(categoriesList[index]);
                           },
                         )
@@ -91,7 +90,6 @@ class CategoryFragment extends StatelessWidget {
                           animate: true,
                           radiusStyle: true,
                           onToggle: (index1) {
-                            print('switched to: $index');
                             onViewAllClicked(categoriesList[index]);
                           },
                         ),

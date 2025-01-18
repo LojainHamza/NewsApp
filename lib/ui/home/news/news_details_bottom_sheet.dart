@@ -7,6 +7,7 @@ import 'package:news_app/providers/app_theme_provider.dart';
 import 'package:news_app/utils/app_styles.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 
 class NewsDetailsBottomSheet extends StatefulWidget {
@@ -58,8 +59,14 @@ class _NewsDetailsBottomSheetState extends State<NewsDetailsBottomSheet> {
                 if (await canLaunchUrl(url)) {
                   await launchUrl(url);
                 } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text(AppLocalizations.of(context)!.sth_went_wrong)),
+                  Fluttertoast.showToast(
+                    msg: AppLocalizations.of(context)!.sth_went_wrong,
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.BOTTOM,
+                    timeInSecForIosWeb: 1,
+                    backgroundColor: Colors.red,
+                    textColor: Colors.white,
+                    fontSize: 16.0,
                   );
                 }
               },
