@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/api/api_manager.dart';
 import 'package:news_app/model/category_model.dart';
-import 'package:news_app/model/source_response.dart';
 import 'package:news_app/ui/home/category/category_details_view_model.dart';
 import 'package:news_app/ui/home/category/source_tab_widget.dart';
 import 'package:news_app/utils/app_colors.dart';
@@ -32,23 +30,24 @@ class _CategoryDetailsState extends State<CategoryDetails> {
         create: (context) => viewModel,
         child: Consumer<CategoryDetailsViewModel>(
             builder: (context, viewModel, child) {
-          if(viewModel.errorMessage != null){
+          if (viewModel.errorMessage != null) {
             return Center(
-                          child: Column(
-                            children: [
-                              Text(viewModel.errorMessage!),
-                              ElevatedButton(
-                                onPressed: (){
-                                viewModel.getSources(widget.category.id);
-                              }, child: Text(AppLocalizations.of(context)!.try_again,style: Theme.of(context).textTheme.headlineLarge))
-                            ],
-                          ),
-                        );
-                      }
-          else if (viewModel.sourcesList == null) {
+              child: Column(
+                children: [
+                  Text(viewModel.errorMessage!),
+                  ElevatedButton(
+                      onPressed: () {
+                        viewModel.getSources(widget.category.id);
+                      },
+                      child: Text(AppLocalizations.of(context)!.try_again,
+                          style: Theme.of(context).textTheme.headlineLarge))
+                ],
+              ),
+            );
+          } else if (viewModel.sourcesList == null) {
             return const Center(
                 child: CircularProgressIndicator(color: AppColors.greyColor));
-          }else{
+          } else {
             return SourceTabWidget(sourcesList: viewModel.sourcesList!);
           }
         }));
