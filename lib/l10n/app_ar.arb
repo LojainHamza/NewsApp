@@ -24,5 +24,8 @@
   "sth_went_wrong": "حدث خطأ ما",
   "try_again": "حاول مرة أخرى",
   "by": "بواسطة",
-  "unknown": "غير معروف"
+  "unknown": "غير معروف",
+  "error_occurred": "حدث خطأ!",
+  "no_sources_available": "لا توجد مصادر متاحة",
+  "no_news_available": "لا توجد أخبار متاحة"
 }

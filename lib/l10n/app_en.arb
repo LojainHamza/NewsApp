@@ -22,7 +22,10 @@
   "english": "English",
   "arabic": "Arabic",
   "sth_went_wrong": "Something Went Wrong",
-  "try_again": "Try Again",
   "by": "By",
-  "unknown": "Unknown"
+  "unknown": "Unknown",
+  "error_occurred": "An error occurred!",
+  "try_again": "Try Again",
+  "no_sources_available": "No sources available",
+  "no_news_available": "No News Available"
 }
