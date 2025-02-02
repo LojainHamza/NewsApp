@@ -18,17 +18,14 @@ SourceRepository injectSourceRepository(){
   return SourceRepositoryImpl(remoteDataSource: injectSourceRemoteDataSource(), offlineDataSource: injectSourceOfflineDataSource());
 }
 SourceRemoteDataSource injectSourceRemoteDataSource(){
-  return SourceRemoteDataSourceImpl(apiManager: injectApiManager());
+  return SourceRemoteDataSourceImpl(apiManager: APIManager.getInstance());
 }
 SourceOfflineDataSource injectSourceOfflineDataSource(){
   return SourceOfflineDataSourceImpl();
-}
-APIManager injectApiManager(){
-  return APIManager();
 }
 NewsRepository injectNewsRepository(){
   return NewsRepositoryImpl(remoteDataSource: injectNewsRemoteDataSource());
 }
 NewsRemoteDataSource injectNewsRemoteDataSource(){
-  return NewsRemoteDataSourceImpl(apiManager: injectApiManager());
+  return NewsRemoteDataSourceImpl(apiManager: APIManager.getInstance());
 }

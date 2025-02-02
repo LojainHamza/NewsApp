@@ -7,6 +7,16 @@ import 'package:news_app/model/news_response.dart';
 import 'package:news_app/model/source_response.dart';
 
 class APIManager{
+  static APIManager? _instance;    // null - object
+
+  //todo: private constructor
+  APIManager._();
+
+  static APIManager getInstance(){
+    _instance ??= APIManager._();
+    return _instance!;
+  }
+
   Future<SourceResponse?> getSources(String categoryId) async{
     Uri url = Uri.https(
         APIConstants.baseUrl,
