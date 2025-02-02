@@ -14,6 +14,8 @@ import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
+import 'di/di_inject.dart';
+
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
@@ -21,6 +23,8 @@ void main() async{
   Hive.init(directory.path);
   Hive.registerAdapter(SourceResponseAdapter());
   Hive.registerAdapter(SourceAdapter());
+  configureDependencies();
+
   /// Create instances of providers
   final appLanguageProvider = AppLanguageProvider();
   final appThemeProvider = AppThemeProvider();

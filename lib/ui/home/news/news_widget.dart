@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app/di/di.dart';
+import 'package:news_app/di/di_inject.dart';
 import 'package:news_app/model/source_response.dart';
 import 'package:news_app/ui/home/news/cubit/news_states.dart';
 import 'package:news_app/ui/home/news/cubit/news_view_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:news_app/utils/app_colors.dart';
-
 import 'news_item.dart';
 
 class NewsWidget extends StatefulWidget {
@@ -18,7 +17,7 @@ class NewsWidget extends StatefulWidget {
 }
 
 class _NewsWidgetState extends State<NewsWidget> {
-  NewsViewModel viewModel = NewsViewModel(newsRepository: injectNewsRepository());
+  NewsViewModel viewModel = getIt<NewsViewModel>();   // field injection
 
   @override
   void initState() {
